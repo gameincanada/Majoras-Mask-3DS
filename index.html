@@ -1,0 +1,64 @@
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://2.bp.blogspot.com/-s2JbEGW4yz0/WOuRrr2C0yI/AAAAAAAAAbg/OHv-BB-vv5kKu79if3Wdhp8qz7Rx4c3ugCLcB/s1600/mm3ds.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="306" src="https://2.bp.blogspot.com/-s2JbEGW4yz0/WOuRrr2C0yI/AAAAAAAAAbg/OHv-BB-vv5kKu79if3Wdhp8qz7Rx4c3ugCLcB/s640/mm3ds.png" width="640" /></a></div>
+<span style="color: magenta;"><br /></span>
+<span style="color: magenta;"><br /></span>
+<span style="color: magenta;">// Led 1&amp;4 should be on when everything is working</span><br />
+Wiimote.Led1 = true<br />
+Wiimote.Led4 = true<br />
+<br />
+<span style="color: magenta;">// Ignore cursor movement caused by clicking a button</span><br />
+var.ButtonFreezeTime = 250ms<br />
+var.PointerBump = KeepDown(Pressed(wiimote.A),var.ButtonFreezeTime)<br />
+<br />
+<span style="color: magenta;">// Mouse movement</span><br />
+if wiimote.PointerVisible but not var.PointerBump then<br />
+mouse.x = wiimote.PointerX<br />
+mouse.y = wiimote.PointerY<br />
+end if<br />
+<span style="color: magenta;"><br /></span>
+<span style="color: magenta;">// Mouse Buttons</span><br />
+mouse.LeftButton = Wiimote.A and KeepDown(Wiimote.PointerVisible,0.5s)<br />
+<span style="color: magenta;"><br /></span>
+<span style="color: magenta;">//Omit the IR Touchscreen Script Above if you aren't Video Streaming</span><br />
+<span style="color: magenta;"><br /></span>
+<span style="color: magenta;">// Nunchuk Controls - Link Walking</span><br />
+left = (-1.2 &lt; wiimote.Nunchuk.JoyX &lt; -0.5)<br />
+right = (0.5 &lt; wiimote.Nunchuk.JoyX &lt; 1.2)<br />
+up = (-1.2 &lt; wiimote.Nunchuk.JoyY &lt; -0.5)<br />
+down = (0.5 &lt; wiimote.Nunchuk.JoyY &lt; 1.2)<br />
+<br />
+<span style="color: magenta;">//Shield + L-Targeting</span><br />
+Q = wiimote.nunchuk.zbutton<br />
+W = wiimote.nunchuk.cbutton<br />
+<br />
+<span style="color: magenta;">//Wiimote Buttons</span><br />
+S = wiimote.B<br />
+A = Wiimote.A<br />
+M = wiimote.Plus<br />
+// = wiimote.two<br />
+// = Wiimote.one<br />
+// = wiimote.Home<br />
+Z = Wiimote.Up<br />
+X = Wiimote.Left<br />
+H = Wiimote.Right<br />
+G = Wiimote.Down<br />
+<br />
+<span style="color: magenta;">//Twilight Princess Sword Swing&nbsp;</span><br />
+<span style="color: magenta;">//Skyward Sword Nunchuk Roll</span><br />
+S = (wiimote.RawForceX &gt;= 15)<br />
+A = (wiimote.nunchuk.RawForceX &gt;= 15)<br />
+//Disable Mouse by Holding Wiimote(-)<br />
+if wiimote.Plus then<br />
+mouse.x = false<br />
+mouse.y = false<br />
+mouse.LeftButton = false<br />
+end if<br />
+<br />
+<span style="color: magenta;">//Wiimote Motion Aiming Controls - Hold Wiimote (-) Button To Active</span><br />
+<span style="color: magenta;">//Change the Degree values to get more exact controls</span><br />
+left = Wiimote.smoothroll &lt; -5 degrees and Wiimote.Minus<br />
+right = Wiimote.smoothroll &gt; 5 degrees and Wiimote.Minus<br />
+up = Wiimote.smoothPitch &gt; 30 degrees and Wiimote.Minus<br />
+down = Wiimote.smoothPitch &lt; 5 degrees and Wiimote.Minus<br />
+<div>
+<br /></div>
